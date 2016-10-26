@@ -2,8 +2,8 @@
 var http = require('http');
 
 //Lets define a port we want to listen to
-var PORT=7000;
-var PORT2=7500;
+var PORTONE = 7000;
+var PORTTWO = 7500;
 
 var feelGoodStatements = ["You are awesome!", "Great Job!", "thumbs up!", "Funny you are!"];
 var feelBadStatements = ["You are better off dead", "Trying is not for you", "You bore me", "You did great....NOT"]
@@ -12,21 +12,26 @@ var randomFeelGood = feelGoodStatements[randomIndex];
 var randomFeelBad = feelBadStatements[randomIndex];
 
 //We need a function which handles requests and send response
-function handleRequest(request, response){
-    response.end('It Works!! Path Hit: ' + request.url);
+function handleRequestOne(request, response) {
+  response.end(randomFeelGood);
 }
 
-//Create a server
-var server = http.createServer(handleRequest);
+function handleRequestTwo(request, response) {
+  response.end(randomFeelBad);
+}
+
+// Create our servers
+var serverOne = http.createServer(handleRequestOne);
+var serverTwo = http.createServer(handleRequestTwo);
 
 //Lets start our server
 server.listen(PORT, function(){
     //Callback triggered when server is successfully listening. Hurray!
-    console.log(randomFeelGood + " on port: %s", PORT);
+    console.log("Server listening on port: %s", PORT);
 });
 
 server.listen(PORT2, function(){
     //Callback triggered when server is successfully listening. Hurray!
-    console.log(randomFeelBad + " on port: %s", PORT2);
+    console.log("Server listening on port: %s", PORT2);
 });
 
