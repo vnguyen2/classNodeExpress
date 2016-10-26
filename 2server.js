@@ -16,10 +16,12 @@ var server = http.createServer(handleRequest);
 //Lets start our server
 server.listen(PORT, function(){
     //Callback triggered when server is successfully listening. Hurray!
-    console.log("You are awesome!");
+    console.log("You are awesome only on port: %s", PORT);
 });
 
 server.listen(PORT2, function(){
     //Callback triggered when server is successfully listening. Hurray!
-    console.log("You suck!");
+    console.log("You suck on port: %s", PORT2);
 });
+
+connnection.end();
